@@ -1,0 +1,85 @@
+
+#titulo{
+  color: #191988;
+  border-color: #0000;
+  font-weight: bold;
+}
+
+body {
+  background-image: url('../img/wallhaven-z85zwy.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+#ingresar{
+  color: #2929a5;
+  border-color: #0000;
+  font-weight: bold;
+}
+
+/* Área del árbol */
+#contenido_arbol{
+  position: relative;
+  width: 500px;
+  height: 400px;             /* alto del cuadro (ajústalo a tu gusto) */
+  border: 1px solid #6e7e9c;
+  overflow: hidden;          /* nada se sale del cuadro */
+  box-sizing: border-box;
+}
+/* Nodos un poco más pequeños */
+#contenido_arbol span.btn{
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  font-size: 12px;
+  padding: 0;
+}
+
+/* (opcional) sombra suave a los nodos */
+#contenido_arbol .btn{
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+#svg_arbol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#contenido_arbol{
+  background-color: #21a3f474;
+  position: relative;   /* para posicionar hijos en absoluto */
+  height: 340px;        /* ajusta a tu gusto */
+  border: 1px solid #10254e; /* opcional, marco */
+}
+
+/* svg detrás, sin capturar eventos */
+.nodo {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nodo.leaf {
+    background: #7b0909;
+}
+
+/* verde */
+.nodo.op {
+    background: #0a68f489;
+}
+
+/* azul */
