@@ -27,7 +27,7 @@ body {
 
 /* preorden */
 #contenido_preorden{
-  color: #0000;
+  color: #000000;
   background-color: #21a3f474;
   position: relative;
   width: 300px;
@@ -39,7 +39,7 @@ body {
 
 /* postorden */
 #contenido_postorden{
-  color: #0000;
+  color: #000000;
   background-color: #21a3f474;
   position: relative;
   width: 300px;
@@ -51,7 +51,7 @@ body {
 
 /* inorden */
 #contenido_inorden{
-  color: #0000;
+  color: #000000;
   background-color: #21a3f474;
   position: relative;
   width: 300px;
