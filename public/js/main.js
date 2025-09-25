@@ -157,7 +157,7 @@ btn1.addEventListener("click", ()=>{
     document.getElementById("contenido_preorden").innerText  = pre;                 // e.g. "+ A B"
     // mostramos la versión sin paréntesis y, si difiere, la versión con paréntesis
     let inText = inSimple;
-    if(inParen !== inSimple) inText += "\n(Con paréntesis: " + inParen + ")";
+    if(inParen !== inSimple);
     document.getElementById("contenido_inorden").innerText   = inText;            // e.g. "A + B"  ó "A + B\n(Con paréntesis: (A + B))"
     document.getElementById("contenido_postorden").innerText = post;                // e.g. "A B +"
   }catch(e){ console.error(e); alert("Error: "+e.message); }
