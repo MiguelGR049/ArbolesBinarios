@@ -84,6 +84,58 @@ function dibujar(n){
   }
 }
 
+// ---------- Recorridos ----------
+// pre y post devuelven arrays de tokens (fácil para mostrar)
+function preordenArr(n, res=[]){
+  if(!n) return res;
+  res.push(n.v);
+  if(n.t==='o'){ preordenArr(n.l,res); preordenArr(n.r,res); }
+  return res;
+}
+function postordenArr(n, res=[]){
+  if(!n) return res;
+  if(n.t==='o'){ postordenArr(n.l,res); postordenArr(n.r,res); }
+  res.push(n.v);
+  return res;
+}
+
+// inorden lineal (sin paréntesis)
+function inordenSimple(n){
+  if(!n) return '';
+  if(n.t==='n') return n.v;
+  return inordenSimple(n.l) + ' ' + n.v + ' ' + inordenSimple(n.r);
+}
+
+// inorden con paréntesis que respeta la estructura (fully parenthesized)
+// y luego quitamos paréntesis exteriores para presentación limpia.
+function inordenParen(n){
+  if(!n) return '';
+  if(n.t==='n') return n.v;
+  return '(' + inordenParen(n.l) + ' ' + n.v + ' ' + inordenParen(n.r) + ')';
+}
+function stripOuterParens(s){
+  // quitar paréntesis exteriores balanceados repetidamente
+  function outerIsBalanced(str){
+    if(str.length<2 || str[0] !== '(' || str[str.length-1] !== ')') return false;
+    let depth = 0;
+    for(let i=1;i<str.length-1;i++){
+      const c = str[i];
+      if(c==='(') depth++;
+      else if(c===')'){
+        if(depth===0) return false; // cierra la paréntesis exterior antes del final
+        depth--;
+      }
+    }
+    return depth===0;
+  }
+  let out = s;
+  while(outerIsBalanced(out)){
+    out = out.slice(1,-1);
+  }
+  return out;
+}
+
+// ---------- Evento del botón ----------
 btn1.addEventListener("click", ()=>{
   const expr=(document.getElementById("expresion").value||'').trim();
   if(!validacion.test(expr)) return alert("Expresión inválida: caracteres no permitidos.");
@@ -95,5 +147,18 @@ btn1.addEventListener("click", ()=>{
     limpia(); arbol.innerHTML='';
     const ast=rpn2ast(aRPN(tk));
     ubicar(ast); dibujar(ast);
+
+    // Preparar y mostrar recorridos
+    const pre = preordenArr(ast).join(' ');
+    const post = postordenArr(ast).join(' ');
+    const inSimple = inordenSimple(ast).trim().replace(/\s+/g,' ');
+    const inParen = stripOuterParens(inordenParen(ast)).replace(/\s+/g,' ');
+
+    document.getElementById("contenido_preorden").innerText  = pre;                 // e.g. "+ A B"
+    // mostramos la versión sin paréntesis y, si difiere, la versión con paréntesis
+    let inText = inSimple;
+    if(inParen !== inSimple) inText += "\n(Con paréntesis: " + inParen + ")";
+    document.getElementById("contenido_inorden").innerText   = inText;            // e.g. "A + B"  ó "A + B\n(Con paréntesis: (A + B))"
+    document.getElementById("contenido_postorden").innerText = post;                // e.g. "A B +"
   }catch(e){ console.error(e); alert("Error: "+e.message); }
 });

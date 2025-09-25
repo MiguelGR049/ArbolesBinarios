@@ -10,9 +10,6 @@ body {
   background-size: cover;
   background-position: center;
   height: 100vh;
-}
-
-#ingresar{
   color: #2929a5;
   border-color: #0000;
   font-weight: bold;
@@ -27,6 +24,41 @@ body {
   overflow: hidden;          /* nada se sale del cuadro */
   box-sizing: border-box;
 }
+
+/* preorden */
+#contenido_preorden{
+  background-color: #21a3f474;
+  position: relative;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #6e7e9c;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* postorden */
+#contenido_postorden{
+  background-color: #21a3f474;
+  position: relative;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #6e7e9c;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* inorden */
+#contenido_inorden{
+  background-color: #21a3f474;
+  position: relative;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #6e7e9c;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
 /* Nodos un poco más pequeños */
 #contenido_arbol span.btn{
   width: 26px;
